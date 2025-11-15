@@ -113,7 +113,7 @@ Executa o pod do metrics server.
 
   ```bash
   kubectl top nodes
-  kubectl top pods -A
+  kubectl top pods -n <namespace>
   ```
 
 ---
