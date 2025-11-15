@@ -1,4 +1,4 @@
-# 📘 Desafio Rocketseat Kubernetes + FastAPI + MySQL
+## 📘 Desafio Rocketseat Kubernetes + FastAPI + MySQL
 
 Este repositório contém uma aplicação completa utilizando **FastAPI**, **MySQL**, **Docker**, **Alembic** e um ambiente Kubernetes totalmente configurado, incluindo:
 
