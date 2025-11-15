@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: desafio-db-deployment
+  namespace: desafio-db
+
+spec:
+  
+  replicas: 1
+
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 10%
+      maxSurge: 20%
+  
+  selector:
+    matchLabels:
+      api: desafio-db-deployment
+  
+  template:
+    metadata:
+      labels:
+        api: desafio-db-deployment
+
+    spec:
+      containers:
+        - name: desafio-db-container
+          image: rcursino/mysql-desafio-rocketseat:v1
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: desafio-db-config
+            - secretRef:
+                name: desafio-db-secrets
+          ports:
+            - containerPort: 3306
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "256m"
+            limits:
+              memory: "1024Mi"
+              cpu: "512m"
+
+          volumeMounts:
+            - name: desafio-db-storage
+              mountPath: /var/lib/mysql
+
+      volumes:
+        - name: desafio-db-storage
+          persistentVolumeClaim:
+            claimName: database-desasio-pvc
+
+      

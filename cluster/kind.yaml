@@ -1,0 +1,20 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+
+nodes:
+  - role: control-plane
+  - role: control-plane
+  - role: worker
+  - role: worker
+
+# comand to create the kind cluster:
+# kind create cluster --config=cluster/kind.yaml --name desafio-k8s
+# comand to delete the kind cluster:
+# kind delete cluster --name desafio-k8s
+# comand to get cluster info:
+# kubectl cluster-info --context kind-desafio-k8s
+# comand para criar um namepace:
+# kubectl create namespace desafio-api
+
+#adicionando metricas no cluster
+# kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml --kubelet-insecure-tls

@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: mysql
+  namespace: desafio-db
+
+spec:
+  type: ClusterIP
+  selector:
+    api: desafio-db-deployment
+  ports:
+  - port: 3306
+    targetPort: 3306
+
+# Expose the MySQL service within the cluster
+# kubectl port-forward svc/mysql 3306:3306 -n desafio-db
+# Access the MySQL database using a MySQL client
+# mysql -h 127.0.0.1 -P 3306 -u root -p

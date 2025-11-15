@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: desafio-api-service
+  namespace: desafio-api
+
+spec:
+  type: ClusterIP
+  selector:
+    api: desafio-api-deployment
+  ports:
+    - port: 8080
+      targetPort: 3000

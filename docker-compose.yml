@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+  api:
+    build: ./app
+    container_name: fastapi_app
+    ports:
+      - "3000:3000"
+    environment:
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root123
+      MYSQL_DATABASE: restaurante
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+    depends_on:
+      - mysql
+    restart: always
+
+  mysql:
+    build: ./database
+    container_name: mysql_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: always
+
+volumes:
+  mysql_data:
+
+# comandos úteis:
+# Subir os containers: docker compose up -d --build
+# Parar os containers: docker compose down -v

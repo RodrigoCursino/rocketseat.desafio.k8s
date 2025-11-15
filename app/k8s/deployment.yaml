@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: desafio-api-deployment
+  namespace: desafio-api
+
+spec:
+  
+  replicas: 2
+
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 10%
+      maxSurge: 20%
+  
+  selector:
+    matchLabels:
+      api: desafio-api-deployment
+  
+  template:
+    metadata:
+      labels:
+        api: desafio-api-deployment
+
+    spec:
+      containers:
+        - name: desafio-api-container
+          image: rcursino/app-desafio-rocketseat:v1
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: desafio-api-config
+            - secretRef:
+                name: desafio-api-secrets
+          ports:
+            - containerPort: 3000
+
+          startupProbe:
+            httpGet:
+              path: /healthz/
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            failureThreshold: 3
+            successThreshold: 1
+            timeoutSeconds: 1
+          readinessProbe:
+            httpGet: 
+              path: /healthz/ready
+              port: 3000
+            periodSeconds: 15
+            initialDelaySeconds: 5
+            failureThreshold: 3
+            successThreshold: 1
+            timeoutSeconds: 1
+          livenessProbe:
+            httpGet:
+              path: /healthz/
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            failureThreshold: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
