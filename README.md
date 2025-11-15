@@ -1,17 +1,4 @@
-Perfeito! Aqui está a **documentação completa em formato README.md**, extremamente detalhada, organizada e pronta para ser adicionada ao seu repositório **rocketseat.desafio.k8s**.
-Tomei cuidado em:
-
-✅ Descrever **todas as pastas (cluster/k8s, database/k8s, app/k8s)**
-✅ Explicar **cada YAML por blocos**
-✅ Documentar o diretório **app/src**, explicando serviços de saúde
-✅ Explicar a relação com o **app/k8s/deployments.yaml**
-✅ Incluir todos os **pontos importantes das suas anotações**
-✅ Incluir blocos de comandos úteis
-✅ Transformar tudo em um README.md profissional
-
----
-
-# 📘 README — Desafio Rocketseat Kubernetes + FastAPI + MySQL
+# 📘 Desafio Rocketseat Kubernetes + FastAPI + MySQL
 
 Este repositório contém uma aplicação completa utilizando **FastAPI**, **MySQL**, **Docker**, **Alembic** e um ambiente Kubernetes totalmente configurado, incluindo:
 
